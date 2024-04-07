@@ -39,8 +39,14 @@ def inverse(m):
 	return adj
 
 def multiply(arr1, arr2):
-	result = [[sum(a*b for a, b in zip(arow, bcol)) for bcol in zip(*arr2)] for arow in arr1]
-	return result
+    result = [[0 for i in range(len(arr1))] for j in range(len(arr2))]
+    
+    for i in range(len(arr1)):
+        for j in range(len(arr2[0])):
+            for k in range(len(arr2)):
+                result[i][j] += arr1[i][k]*arr2[k][j]
+    
+    return result
 
 def changebasis(vector, oldbasis, newbasis):
 	adj1 = transpose(oldbasis)
